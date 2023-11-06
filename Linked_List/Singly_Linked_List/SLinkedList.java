@@ -11,63 +11,85 @@ public class SLinkedList <DataType> implements ILinkedList<DataType> {
     }
 
     @Override
-    public void add(int index, DataType element) {
-        // TODO Auto-generated method stub
-
+    public void add(int index, DataType element) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= this.size) throw new IndexOutOfBoundsException("Error");
+        SNode<DataType> p = this.header;
+        for (int i = 1 ; i < index; i++) p = p.getNext();
+        SNode<DataType> newNode = new SNode<DataType>(element, p.getNext());
+        p.setNext(newNode);
+        this.size++;
     }
 
     @Override
     public void add(DataType element) {
-        // TODO Auto-generated method stub
-
+        SNode<DataType> p = this.header;
+        while (p.getNext() != null) p = p.getNext();
+        SNode<DataType> newNode = new SNode<DataType>(element, p.getNext());
+        p.setNext(newNode);
+        this.size++;
     }
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-
+        this.header.setNext(null);
+        this.size = 0;
     }
 
     @Override
     public boolean contains(DataType o) {
-        // TODO Auto-generated method stub
+        SNode<DataType> p = this.header;
+        while (p.getNext() != null) {
+            if(p.getData() == o) return true;
+        }
         return false;
     }
 
     @Override
-    public DataType get(int index) {
-        // TODO Auto-generated method stub
-        return null;
+    public DataType get(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= this.size)throw new IndexOutOfBoundsException("Error");
+        SNode<DataType> p = this.header;
+        for (int i = 1; i <= index; i++) p = p.getNext();
+        return p.getData();
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.size == 0;
     }
 
     @Override
-    public void remove(int index) {
-        // TODO Auto-generated method stub
-
+    public void remove(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= this.size) throw new IndexOutOfBoundsException("Error");
+        SNode<DataType> p = this.header;
+        for (int i = 1; i < index ; i++) p = p.getNext();
+        p.setNext(p.getNext().getNext());
     }
 
     @Override
-    public void set(int index, DataType element) {
-        // TODO Auto-generated method stub
-
+    public void set(int index, DataType element) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= this.size) throw new IndexOutOfBoundsException("Error");
+        SNode<DataType> p = this.header;
+        for (int i = 1; i <= index; i++) p = p.getNext();
+        p.setData(element);
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.size;
     }
 
     @Override
-    public ILinkedList<DataType> sublist(int fromIndex, int toIndex) {
-        // TODO Auto-generated method stub
-        return null;
+    public ILinkedList<DataType> sublist(int fromIndex, int toIndex) throws IndexOutOfBoundsException{
+        if (fromIndex < 0 || fromIndex >= this.size) throw new IndexOutOfBoundsException("Error");
+        if (toIndex < 0 || toIndex >= this.size) throw new IndexOutOfBoundsException("Error");
+        SNode<DataType> p = this.header;
+        for (int i = 1; i <= fromIndex; i++) p = p.getNext();
+        ILinkedList<DataType> subList = new SLinkedList<DataType>();
+        for (int i = fromIndex; i <= toIndex; i++) {
+            subList.add(p.getData());
+            p = p.getNext();
+        }
+        return subList;
     }
 
 }
