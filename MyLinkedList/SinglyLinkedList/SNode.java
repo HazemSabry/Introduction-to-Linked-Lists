@@ -1,4 +1,4 @@
-package Linked_List.Singly_Linked_List;
+package MyLinkedList.SinglyLinkedList;
 
 public class SNode <DataType>{
     private DataType data;

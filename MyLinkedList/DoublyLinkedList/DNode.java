@@ -1,5 +1,3 @@
-package Linked_List.Doubly_Linked_List;
-
 public class DNode<DataType> {
     private DataType data;
     private DNode<DataType> prev;

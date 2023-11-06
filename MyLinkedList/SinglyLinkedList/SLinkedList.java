@@ -1,5 +1,7 @@
-package Linked_List.Singly_Linked_List;
-import Linked_List.ILinkedList;
+package MyLinkedList.SinglyLinkedList;
+
+
+import MyLinkedList.ILinkedList;
 
 public class SLinkedList <DataType> implements ILinkedList<DataType> {
     private SNode<DataType> header;
@@ -39,6 +41,7 @@ public class SLinkedList <DataType> implements ILinkedList<DataType> {
     public boolean contains(DataType o) {
         SNode<DataType> p = this.header;
         while (p.getNext() != null) {
+            p = p.getNext();
             if(p.getData() == o) return true;
         }
         return false;
@@ -83,7 +86,7 @@ public class SLinkedList <DataType> implements ILinkedList<DataType> {
         if (fromIndex < 0 || fromIndex > toIndex || toIndex >= this.size) throw new IndexOutOfBoundsException("Error");
         SNode<DataType> p = this.header;
         for (int i = 0; i <= fromIndex; i++) p = p.getNext();
-        ILinkedList<DataType> subList = new SLinkedList<DataType>();
+        SLinkedList<DataType> subList = new SLinkedList<DataType>();
         for (int i = fromIndex; i <= toIndex; i++) {
             subList.add(p.getData());
             p = p.getNext();
@@ -91,4 +94,14 @@ public class SLinkedList <DataType> implements ILinkedList<DataType> {
         return subList;
     }
 
+    public void printList(){
+        SNode<DataType> p = this.header;
+        System.out.print("[");
+        while (p.getNext() != null) {
+            p = p.getNext();
+            System.out.print(p.getData());
+            if(p.getNext() != null) System.out.print(", ");
+        }
+        System.out.print("]");
+    }
 }

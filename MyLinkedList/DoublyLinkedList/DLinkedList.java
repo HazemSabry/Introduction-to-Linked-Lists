@@ -1,5 +1,4 @@
-package Linked_List.Doubly_Linked_List;
-import Linked_List.ILinkedList;
+import MyLinkedList.ILinkedList;
 
 public class DLinkedList<DataType> implements ILinkedList<DataType> {
     private int size;
@@ -49,6 +48,7 @@ public class DLinkedList<DataType> implements ILinkedList<DataType> {
     public boolean contains(DataType o) {
         DNode<DataType> p = this.header.getNext();
         while (p != this.trailer) {
+            p = p.getNext();
             if(p.getData() == o) return true;
         }
         return false;
@@ -124,6 +124,17 @@ public class DLinkedList<DataType> implements ILinkedList<DataType> {
             p = p.getNext();
         }
         return subList;
+    }
+
+    public void printList(){
+        DNode<DataType> p = this.header;
+        System.out.print("[");
+        while (p.getNext() != this.trailer) {
+            p = p.getNext();
+            System.out.print(p.getData());
+            if(p.getNext() != this.trailer) System.out.print(", ");
+        }
+        System.out.print("]");
     }
 
 }

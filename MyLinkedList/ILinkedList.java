@@ -1,4 +1,4 @@
-package Linked_List;
+package MyLinkedList;
 
 public interface ILinkedList<DataType> {
     /**
