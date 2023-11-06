@@ -1,6 +1,5 @@
 package MyLinkedList.SinglyLinkedList;
 
-
 import MyLinkedList.ILinkedList;
 
 public class SLinkedList <DataType> implements ILinkedList<DataType> {

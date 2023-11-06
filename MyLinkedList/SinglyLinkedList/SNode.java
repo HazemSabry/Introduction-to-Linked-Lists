@@ -10,7 +10,7 @@ public class SNode <DataType>{
     }
 
     public DataType getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(DataType data) {
@@ -18,7 +18,7 @@ public class SNode <DataType>{
     }
 
     public SNode<DataType> getNext() {
-        return next;
+        return this.next;
     }
 
     public void setNext(SNode<DataType> next) {

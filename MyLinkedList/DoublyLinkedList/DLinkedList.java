@@ -1,3 +1,4 @@
+
 import MyLinkedList.ILinkedList;
 
 public class DLinkedList<DataType> implements ILinkedList<DataType> {
@@ -19,11 +20,13 @@ public class DLinkedList<DataType> implements ILinkedList<DataType> {
             DNode<DataType> p = this.header;
             for (int i = 0; i < index; i++) p = p.getNext();
             DNode<DataType> newNode = new DNode<DataType>(element, p, p.getNext());
+            p.getNext().setPrev(newNode);
             p.setNext(newNode);
         }else{
             DNode<DataType> p = this.trailer;
             for (int i = this.size; i > index; i--) p = p.getPrev();
             DNode<DataType> newNode = new DNode<DataType>(element, p.getPrev(), p);
+            p.getPrev().setNext(newNode);
             p.setPrev(newNode);
         }
         this.size++;
@@ -33,6 +36,7 @@ public class DLinkedList<DataType> implements ILinkedList<DataType> {
     public void add(DataType element) {
         DNode<DataType> p = this.trailer;
         DNode<DataType> newNode = new DNode<DataType>(element, p.getPrev(), p);
+        p.getPrev().setNext(newNode);
         p.setPrev(newNode);
         this.size++;
     }
@@ -40,7 +44,7 @@ public class DLinkedList<DataType> implements ILinkedList<DataType> {
     @Override
     public void clear() {
         this.header.setNext(this.trailer);
-        this.trailer.setPrev(header);
+        this.trailer.setPrev(this.header);
         this.size = 0;
     }
 
@@ -63,7 +67,7 @@ public class DLinkedList<DataType> implements ILinkedList<DataType> {
             return p.getData();
         }else{
             DNode<DataType> p = this.trailer;
-            for (int i = this.size; i >= index; i--) p = p.getPrev();
+            for (int i = this.size; i > index; i--) p = p.getPrev();
             return p.getData();
         }
     }
@@ -79,13 +83,15 @@ public class DLinkedList<DataType> implements ILinkedList<DataType> {
         if( index < (this.size/2)){
             DNode<DataType> p =this.header;
             for (int i = 0; i < index; i++) p = p.getNext();
+            p.getNext().getNext().setPrev(p);
             p.setNext(p.getNext().getNext());
         }else{
             DNode<DataType> p = this.trailer;
-            for (int i = this.size; i > index; i++) p = p.getPrev();
+            for (int i = this.size-1; i > index; i--) p = p.getPrev();
+            p.getPrev().getPrev().setNext(p);
             p.setPrev(p.getPrev().getPrev());
         }
-        this.size++;
+        this.size--;
     }
 
     @Override
@@ -97,7 +103,7 @@ public class DLinkedList<DataType> implements ILinkedList<DataType> {
             p.setData(element);
         }else{
             DNode<DataType> p = this.trailer;
-            for (int i = this.size; i <= index; i++) p = p.getPrev();
+            for (int i = this.size; i > index; i--) p = p.getPrev();
             p.setData(element);
         }
     }
@@ -116,7 +122,7 @@ public class DLinkedList<DataType> implements ILinkedList<DataType> {
             for (int i = 0; i <= fromIndex; i++) p = p.getNext();
         }else{
             p = this.trailer;
-            for (int i = this.size; i >= fromIndex; i--) p = p.getPrev();
+            for (int i = this.size; i > fromIndex; i--) p = p.getPrev();
         }
         ILinkedList<DataType> subList = new DLinkedList<DataType>();
         for (int i = fromIndex; i <= toIndex; i++){

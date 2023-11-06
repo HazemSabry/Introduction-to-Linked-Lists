@@ -10,7 +10,7 @@ public class DNode<DataType> {
     }
 
     public DataType getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(DataType data) {
@@ -18,7 +18,7 @@ public class DNode<DataType> {
     }
 
     public DNode<DataType> getPrev() {
-        return prev;
+        return this.prev;
     }
 
     public void setPrev(DNode<DataType> prev) {
@@ -26,7 +26,7 @@ public class DNode<DataType> {
     }
 
     public DNode<DataType> getNext() {
-        return next;
+        return this.next;
     }
 
     public void setNext(DNode<DataType> next) {
