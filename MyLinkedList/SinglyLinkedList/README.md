@@ -1,5 +1,3 @@
-Certainly! Here's an example of a README documentation for your code:
-
 # LinkedList Implementation in Java
 
 This Java program provides an implementation of a singly linked list with a set of operations. It allows you to manipulate a list of integers using various commands.
