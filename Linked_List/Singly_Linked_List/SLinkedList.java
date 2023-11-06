@@ -14,7 +14,7 @@ public class SLinkedList <DataType> implements ILinkedList<DataType> {
     public void add(int index, DataType element) throws IndexOutOfBoundsException {
         if (index < 0 || index >= this.size) throw new IndexOutOfBoundsException("Error");
         SNode<DataType> p = this.header;
-        for (int i = 1 ; i < index; i++) p = p.getNext();
+        for (int i = 0 ; i < index; i++) p = p.getNext();
         SNode<DataType> newNode = new SNode<DataType>(element, p.getNext());
         p.setNext(newNode);
         this.size++;
@@ -48,7 +48,7 @@ public class SLinkedList <DataType> implements ILinkedList<DataType> {
     public DataType get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= this.size)throw new IndexOutOfBoundsException("Error");
         SNode<DataType> p = this.header;
-        for (int i = 1; i <= index; i++) p = p.getNext();
+        for (int i = 0; i <= index; i++) p = p.getNext();
         return p.getData();
     }
 
@@ -61,7 +61,7 @@ public class SLinkedList <DataType> implements ILinkedList<DataType> {
     public void remove(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= this.size) throw new IndexOutOfBoundsException("Error");
         SNode<DataType> p = this.header;
-        for (int i = 1; i < index ; i++) p = p.getNext();
+        for (int i = 0; i < index ; i++) p = p.getNext();
         p.setNext(p.getNext().getNext());
     }
 
@@ -69,7 +69,7 @@ public class SLinkedList <DataType> implements ILinkedList<DataType> {
     public void set(int index, DataType element) throws IndexOutOfBoundsException {
         if (index < 0 || index >= this.size) throw new IndexOutOfBoundsException("Error");
         SNode<DataType> p = this.header;
-        for (int i = 1; i <= index; i++) p = p.getNext();
+        for (int i = 0; i <= index; i++) p = p.getNext();
         p.setData(element);
     }
 
@@ -80,10 +80,9 @@ public class SLinkedList <DataType> implements ILinkedList<DataType> {
 
     @Override
     public ILinkedList<DataType> sublist(int fromIndex, int toIndex) throws IndexOutOfBoundsException{
-        if (fromIndex < 0 || fromIndex >= this.size) throw new IndexOutOfBoundsException("Error");
-        if (toIndex < 0 || toIndex >= this.size) throw new IndexOutOfBoundsException("Error");
+        if (fromIndex < 0 || fromIndex > toIndex || toIndex >= this.size) throw new IndexOutOfBoundsException("Error");
         SNode<DataType> p = this.header;
-        for (int i = 1; i <= fromIndex; i++) p = p.getNext();
+        for (int i = 0; i <= fromIndex; i++) p = p.getNext();
         ILinkedList<DataType> subList = new SLinkedList<DataType>();
         for (int i = fromIndex; i <= toIndex; i++) {
             subList.add(p.getData());
