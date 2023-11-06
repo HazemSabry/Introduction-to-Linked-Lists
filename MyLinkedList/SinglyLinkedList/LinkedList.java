@@ -1,6 +1,5 @@
-package MyLinkedList;
+package MyLinkedList.SinglyLinkedList;
 import java.util.Scanner;
-import MyLinkedList.SinglyLinkedList.SLinkedList;
 
 public class LinkedList {
     public static void main(String[] args) {
