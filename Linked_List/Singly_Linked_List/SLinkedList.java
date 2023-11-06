@@ -1,16 +1,23 @@
 package Linked_List.Singly_Linked_List;
 import Linked_List.ILinkedList;
 
-public class SLinkedList implements ILinkedList {
+public class SLinkedList <DataType> implements ILinkedList<DataType> {
+    private SNode<DataType> header;
+    private int size;
+
+    public SLinkedList(){
+        this.header = new SNode<DataType>(null, null);
+        this.size = 0;
+    }
 
     @Override
-    public void add(int index, Object element) {
+    public void add(int index, DataType element) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void add(Object element) {
+    public void add(DataType element) {
         // TODO Auto-generated method stub
 
     }
@@ -22,13 +29,13 @@ public class SLinkedList implements ILinkedList {
     }
 
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(DataType o) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public Object get(int index) {
+    public DataType get(int index) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -46,7 +53,7 @@ public class SLinkedList implements ILinkedList {
     }
 
     @Override
-    public void set(int index, Object element) {
+    public void set(int index, DataType element) {
         // TODO Auto-generated method stub
 
     }
@@ -58,7 +65,7 @@ public class SLinkedList implements ILinkedList {
     }
 
     @Override
-    public ILinkedList sublist(int fromIndex, int toIndex) {
+    public ILinkedList<DataType> sublist(int fromIndex, int toIndex) {
         // TODO Auto-generated method stub
         return null;
     }

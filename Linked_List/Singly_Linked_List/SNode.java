@@ -1,27 +1,27 @@
 package Linked_List.Singly_Linked_List;
 
-public class SNode <Data>{
-    private Data data;
-    private SNode<Data> next;
+public class SNode <DataType>{
+    private DataType data;
+    private SNode<DataType> next;
 
-    public SNode(Data data, SNode<Data> next){
+    public SNode(DataType data, SNode<DataType> next){
         this.data = data;
         this.next = next;
     }
 
-    public Data getData() {
+    public DataType getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(DataType data) {
         this.data = data;
     }
 
-    public SNode<Data> getNext() {
+    public SNode<DataType> getNext() {
         return next;
     }
 
-    public void setNext(SNode<Data> next) {
+    public void setNext(SNode<DataType> next) {
         this.next = next;
     }
 

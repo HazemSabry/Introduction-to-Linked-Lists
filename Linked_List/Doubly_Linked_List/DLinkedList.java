@@ -1,16 +1,26 @@
 package Linked_List.Doubly_Linked_List;
 import Linked_List.ILinkedList;
 
-public class DLinkedList implements ILinkedList {
+public class DLinkedList<DataType> implements ILinkedList<DataType> {
+    private int size;
+    private DNode<DataType> header;
+    private DNode<DataType> trailer;
+
+    public DLinkedList(DataType data, DNode<DataType> header, DNode<DataType> trailer) {
+        this.size = 0;
+        this.header = new DNode<DataType>(null,null,null);
+        this.trailer = new DNode<DataType>(null,this.header,null);
+        this.header.setNext(trailer);
+    }
 
     @Override
-    public void add(int index, Object element) {
+    public void add(int index, DataType element) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void add(Object element) {
+    public void add(DataType element) {
         // TODO Auto-generated method stub
 
     }
@@ -22,13 +32,13 @@ public class DLinkedList implements ILinkedList {
     }
 
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(DataType o) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public Object get(int index) {
+    public DataType get(int index) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -46,7 +56,7 @@ public class DLinkedList implements ILinkedList {
     }
 
     @Override
-    public void set(int index, Object element) {
+    public void set(int index, DataType element) {
         // TODO Auto-generated method stub
 
     }
@@ -58,7 +68,7 @@ public class DLinkedList implements ILinkedList {
     }
 
     @Override
-    public ILinkedList sublist(int fromIndex, int toIndex) {
+    public ILinkedList<DataType> sublist(int fromIndex, int toIndex) {
         // TODO Auto-generated method stub
         return null;
     }
