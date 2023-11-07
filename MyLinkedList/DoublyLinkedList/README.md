@@ -1,5 +1,3 @@
-Certainly! Here's a README documentation for your Java code that implements a doubly linked list:
-
 # Doubly Linked List Implementation in Java
 
 This Java program provides an implementation of a doubly linked list (`DLinkedList`) with a set of operations. It allows you to manipulate a list of elements using various commands.
