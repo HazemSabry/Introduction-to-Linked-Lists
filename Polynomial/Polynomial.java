@@ -58,7 +58,6 @@ public class Polynomial {
                             polynomialSolver.setPolynomial(poly1, terms1D);
                         }
                     } catch(Exception e){
-                        e.printStackTrace();
                         scanner.close();
                         throw new RuntimeException("Invalid input for term");
                     }
