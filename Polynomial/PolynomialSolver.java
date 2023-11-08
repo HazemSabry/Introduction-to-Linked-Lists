@@ -8,6 +8,10 @@ public class PolynomialSolver  implements IPolynomialSolver {
 
     }
 
+    public void setPolynomial(char poly, int[] terms){
+
+    }
+
     @Override
     public String print(char poly) {
         // TODO Auto-generated method stub
