@@ -86,15 +86,22 @@ public class PolynomialSolver  implements IPolynomialSolver{
                 p = this.C;
                 break;
 
+            case 'R':
+                p = this.R;
+                break;
+
             default:
                 throw new RuntimeException("invalid polynomial name");
         }
 
-        for (int i = 0; i < A.size(); i++) {
-            PolynomialNodeData data = p.get(0);
-            if (i != 0 && i != p.size()-1) result += " + ";
-            result += data.getCoefficient();
-            if(data.getExponent() != 0) result += "x^" + data.getExponent();
+        for (int i = 0; i < p.size(); i++) {
+            PolynomialNodeData data = p.get(i);
+            if (i > 0 && data.getCoefficient() > 0) result += "+";
+            if(data.getCoefficient() != 1)result += data.getCoefficient();
+            if(data.getExponent() != 0) {
+                result += "x";
+                if(data.getExponent() != 1) result += "^" + data.getExponent();
+            }
         }
 
         return result;
@@ -218,9 +225,9 @@ public class PolynomialSolver  implements IPolynomialSolver{
         for (; j < p2.size(); j++) R.add(p2.get(j));
 
         int[][] result = new int[R.size()][2];
-        for (int r = 0; r < R.size(); i++){
-            result[r][0] = R.get(i).getCoefficient();
-            result[r][1] = R.get(j).getExponent();
+        for (int r = 0; r < R.size(); r++){
+            result[r][0] = R.get(r).getCoefficient();
+            result[r][1] = R.get(r).getExponent();
         }
         return result;
     }
@@ -336,25 +343,31 @@ public class PolynomialSolver  implements IPolynomialSolver{
                 throw new RuntimeException("invalid polynomial name");
         }
 
+        this.R.clear();
+
         for (int i = 0; i < p1.size(); i++) {
             for (int j = 0; j < p2.size(); j++) {
                 int resultCoefficient = p1.get(i).getCoefficient() * p2.get(j).getCoefficient();
                 int resultExponent = p1.get(i).getExponent() + p2.get(j).getExponent();
+                boolean termAdded = false;
 
                 for (int k = 0; k < R.size(); k++) {
                     int RExponent = R.get(k).getExponent();
                     int RCoefficient = R.get(k).getCoefficient();
-                    if(resultExponent == RExponent) {
+                    if (resultExponent == RExponent) {
                         R.get(k).setCoefficient(RCoefficient + resultCoefficient);
+                        termAdded = true;
                         break;
                     }
-                    if(k == R.size()-1) {
-                        PolynomialNodeData newData = new PolynomialNodeData(resultCoefficient, resultExponent);
-                        R.add(newData);
-                    }
+                }
+
+                if (!termAdded) {
+                    PolynomialNodeData newData = new PolynomialNodeData(resultCoefficient, resultExponent);
+                    R.add(newData);
                 }
             }
         }
+
 
         int[][] result = new int[R.size()][2];
         for (int r = 0; r < R.size(); r++){
