@@ -3,7 +3,13 @@ package Polynomial;
 public class PolynomialSolver  implements IPolynomialSolver {
 
     @Override
-    public int[][] add(char poly1, char poly2) {
+    public void setPolynomial(char poly, int[][] terms) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public String print(char poly) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -21,25 +27,19 @@ public class PolynomialSolver  implements IPolynomialSolver {
     }
 
     @Override
-    public int[][] multiply(char poly1, char poly2) {
+    public int[][] add(char poly1, char poly2) {
         // TODO Auto-generated method stub
         return null;
-    }
-
-    @Override
-    public String print(char poly) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void setPolynomial(char poly, int[][] terms) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public int[][] subtract(char poly1, char poly2) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int[][] multiply(char poly1, char poly2) {
         // TODO Auto-generated method stub
         return null;
     }
