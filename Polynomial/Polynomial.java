@@ -20,16 +20,30 @@ public class Polynomial {
 
             try {
                 if (termsAString.contains("[[")){
-                termsAString = termsAString.replaceAll("\\[\\[|\\]\\]", "");
-                String[] termsAStrings = termsAString.split("], [");
-                terms2D = new int[termsAStrings.length][2];
+                    termsAString = termsAString.replaceAll("\\[\\[|\\]\\]", "");
+                    String[] termsAStrings = termsAString.split("], ");
 
-                for (int i = 0; i < termsAStrings.length; i++) {
-                    String[] term = termsAStrings[0].split(", ");
-                    if (term.length != 2) throw new RuntimeException("Invalid number of terms");
+                    terms2D = new int[termsAStrings.length][2];
+                    for (int i = 0; i < termsAStrings.length; i++) {
+                        termsAStrings[i] = termsAStrings[i].replace("[", "");
+                        String[] term = termsAStrings[i].split(", ");
+                        if (term.length != 2) throw new RuntimeException("Invalid number of terms");
                         terms2D[i][0] = Integer.parseInt(term[0]);
                         terms2D[i][1] = Integer.parseInt(term[1]);
-                }
+                    }
+
+                    for (int i = 0; i < terms2D.length-1; i++) {
+                        for (int j = 0; j < termsAStrings.length-1-i; j++) {
+                            if(terms2D[j][1] < terms2D[j+1][1]){
+                                int[] temp = terms2D[j];
+                                terms2D[j] = terms2D[j+1];
+                                terms2D[j+1] = temp;
+                            }
+                        }
+                    }
+
+                    polynomialSolver.setPolynomial(poly1, terms2D);
+
                 }else{
                     termsAString = termsAString.replaceAll("\\[|\\]", "");
                     String[] termsAsStrings = termsAString.split(", ");
@@ -38,6 +52,7 @@ public class Polynomial {
                     polynomialSolver.setPolynomial(poly1, terms1D);
                 }
             } catch(Exception e){
+                e.printStackTrace();
                 throw new RuntimeException("Invalid input for term");
             }finally{
                 operation = scanner.nextLine();
