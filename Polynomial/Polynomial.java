@@ -70,8 +70,10 @@ public class Polynomial {
                 break;
 
             default:
+                scanner.close();
                 throw new RuntimeException("Invalid input for operation");
         }
-        System.out.println("Finished");
+
+        scanner.close();
     }
 }
