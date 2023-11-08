@@ -6,6 +6,8 @@ public class Polynomial {
     public static void main(String[] args) throws RuntimeException {
         PolynomialSolver polynomialSolver = new PolynomialSolver();
 
+        char poly1;
+        char poly2;
         int[] terms1D;
         int[][] terms2D;
 
@@ -13,7 +15,7 @@ public class Polynomial {
         String operation = scanner.nextLine();
 
         while (operation.equals("set")) {
-            char poly = scanner.nextLine().charAt(0);
+            poly1 = scanner.nextLine().charAt(0);
             String termsAString = scanner.nextLine();
 
             try {
@@ -33,7 +35,7 @@ public class Polynomial {
                     String[] termsAsStrings = termsAString.split(", ");
                     terms1D = new int[termsAsStrings.length];
                     for (int i = 0; i < terms1D.length; i++) terms1D[i] = Integer.parseInt(termsAsStrings[i]);
-                    polynomialSolver.setPolynomial(poly, terms1D);
+                    polynomialSolver.setPolynomial(poly1, terms1D);
                 }
             } catch(Exception e){
                 throw new RuntimeException("Invalid input for term");
@@ -46,27 +48,37 @@ public class Polynomial {
 
         switch (operation) {
             case "print":
-
+                poly1 = scanner.nextLine().charAt(0);
+                polynomialSolver.print(poly1);
                 break;
 
             case "add":
-
+                poly1 = scanner.nextLine().charAt(0);
+                poly2 = scanner.nextLine().charAt(0);
+                polynomialSolver.add(poly1, poly2);
                 break;
 
             case "eval":
-
+                poly1 = scanner.nextLine().charAt(0);
+                float value = scanner.nextFloat();
+                polynomialSolver.evaluatePolynomial( poly1, value);
                 break;
 
             case "clear":
-
+                poly1 = scanner.nextLine().charAt(0);
+                polynomialSolver.clearPolynomial(poly1);
                 break;
 
             case "sub":
-
+                poly1 = scanner.nextLine().charAt(0);
+                poly2 = scanner.nextLine().charAt(0);
+                polynomialSolver.subtract(poly1, poly2);
                 break;
 
             case "mult":
-
+                poly1 = scanner.nextLine().charAt(0);
+                poly2 = scanner.nextLine().charAt(0);
+                polynomialSolver.multiply(poly1, poly2);
                 break;
 
             default:

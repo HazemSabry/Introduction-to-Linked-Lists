@@ -26,8 +26,8 @@ public class PolynomialSolver  implements IPolynomialSolver {
 
     @Override
     public float evaluatePolynomial(char poly, float value) {
-        // TODO Auto-generated method stub
-        return 0;
+        float result = 0.0f;
+        return result;
     }
 
     @Override
