@@ -16,7 +16,8 @@ public class Polynomial {
             char poly = scanner.nextLine().charAt(0);
             String termsAString = scanner.nextLine();
 
-            if (termsAString.contains("[[")){
+            try {
+                if (termsAString.contains("[[")){
                 termsAString = termsAString.replaceAll("\\[\\[|\\]\\]", "");
                 String[] termsAStrings = termsAString.split("], [");
                 terms2D = new int[termsAStrings.length][2];
@@ -27,15 +28,21 @@ public class Polynomial {
                         terms2D[i][0] = Integer.parseInt(term[0]);
                         terms2D[i][1] = Integer.parseInt(term[1]);
                 }
-            }else{
-                termsAString = termsAString.replaceAll("\\[|\\]", "");
-                String[] termsAsStrings = termsAString.split(", ");
-                terms1D = new int[termsAsStrings.length];
-                for (int i = 0; i < terms1D.length; i++) terms1D[i] = Integer.parseInt(termsAsStrings[i]);
-                polynomialSolver.setPolynomial(poly, terms1D);
+                }else{
+                    termsAString = termsAString.replaceAll("\\[|\\]", "");
+                    String[] termsAsStrings = termsAString.split(", ");
+                    terms1D = new int[termsAsStrings.length];
+                    for (int i = 0; i < terms1D.length; i++) terms1D[i] = Integer.parseInt(termsAsStrings[i]);
+                    polynomialSolver.setPolynomial(poly, terms1D);
+                }
+            } catch(Exception e){
+                throw new RuntimeException("Invalid input for term");
+            }finally{
+                operation = scanner.nextLine();
             }
-            operation = scanner.nextLine();
         }
+
+        System.out.println("Finished");
 
         switch (operation) {
             case "print":
@@ -63,7 +70,7 @@ public class Polynomial {
                 break;
 
             default:
-                break;
+                throw new RuntimeException("Invalid input for operation");
         }
         System.out.println("Finished");
     }
