@@ -52,10 +52,13 @@ public class Polynomial {
 
                         }else{
                             termsAString = termsAString.replaceAll("\\[|\\]", "");
+                            if(termsAString.equals("")) terms1D = new int[0];
+                            else{
                             String[] termsAsStrings = termsAString.split(",");
                             terms1D = new int[termsAsStrings.length];
                             for (int i = 0; i < terms1D.length; i++) terms1D[i] = Integer.parseInt(termsAsStrings[i]);
                             polynomialSolver.setPolynomial(poly1, terms1D);
+                            }
                         }
                     } catch(Exception e){
                         scanner.close();
